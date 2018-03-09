@@ -43,7 +43,7 @@ scoreUpdate numberRef numberElem scoreChange = do
 
 scoreChangeButton :: Document -> String -> Int -> (Int -> EventM HTMLDivElement MouseEvent ()) -> JSM Element
 scoreChangeButton doc label changeBy changeHandler = do
-  changeButton <- textElementWithParams doc "div" [("style", "width: 20%; height: 20%; margin: auto;")] label
+  changeButton <- textElementWithParams doc "div" [("style", "width: 20%; margin: auto;")] label
   changeDiv <- unsafeCastTo HTMLDivElement changeButton
   _ <- on changeDiv click $ changeHandler changeBy
   return changeButton
@@ -52,7 +52,7 @@ playerPanel :: Document -> JSM Element
 playerPanel doc = do
   scoreRef <- newIORef 20
   panelElem <- elementWithParams doc "div" [("style", "width: 50%; height: 100%; display: flex;")]
-  numberContainer <- elementWithParams doc "div" [("style", "width: 20%; height: 20%; margin: auto;")]
+  numberContainer <- elementWithParams doc "div" [("style", "width: 20%; margin: auto;")]
   appendChild_ panelElem numberContainer
   numberElem <- textElementWithParams doc "div" [] "20"
   let scoreChangeHandler change = preventDefault >> liftIO (scoreUpdate scoreRef numberElem change)
