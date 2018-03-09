@@ -1,2 +1,7 @@
-{ nixpkgs ? import <nixpkgs> {} }:
-(import ./default.nix { inherit nixpkgs; }).env
+{ compiler ? "ghcjsHEAD" }:
+
+let
+  release = (import ./release.nix {inherit compiler;});
+in release.mtg-life.env.overrideAttrs (oldAttrs: rec {
+  buildInputs = oldAttrs.buildInputs ++ [release.cabal];
+});
