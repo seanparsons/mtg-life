@@ -1,10 +1,10 @@
-{ mkDerivation, base, ghcjs-dom, stdenv }:
+{ mkDerivation, base, miso, stdenv }:
 mkDerivation {
   pname = "mtg-life";
   version = "0.1.0.0";
-  src = ./..;
+  src = ./.;
   isLibrary = false;
   isExecutable = true;
-  executableHaskellDepends = [ base ghcjs-dom ];
+  executableHaskellDepends = [ base miso ];
   license = stdenv.lib.licenses.mit;
 }
