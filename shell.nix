@@ -2,6 +2,6 @@
 
 let
   release = (import ./release.nix {inherit compiler;});
-in release.mtg-life.env.overrideAttrs (oldAttrs: rec {
-  buildInputs = oldAttrs.buildInputs ++ [release.cabal];
+in release.pkgs.stdenv.lib.overrideDerivation release.mtg-life.env (oldAttrs: rec {
+  nativeBuildInputs = (if builtins.hasAttr "nativeBuildInputs" oldAttrs then oldAttrs.nativeBuildInputs else []) ++ [release.cabal];
 })

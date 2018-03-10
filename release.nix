@@ -43,7 +43,7 @@ let
     packageOverrides = pkgs: rec {
       haskell = pkgs.haskell // {
         packages = pkgs.haskell.packages // {
-          "${compiler}" = pkgs.haskell.packages."${compiler}".override {        
+          "${compiler}" = pkgs.haskell.packages."${compiler}".override {
             overrides = composeExtensionsList [
               generatedOverrides
               (makeOverrides pkgs.haskell.lib.dontCheck   dontCheckPackages  )
@@ -61,6 +61,6 @@ let
 
 in
   { mtg-life = pkgs.haskell.packages.${compiler}.mtg-life;
-    cabal = pkgs.haskell.packages.${compiler}.cabal-install;
+    cabal = pkgs.haskellPackages.cabal-install;
     pkgs = pkgs;
   }
