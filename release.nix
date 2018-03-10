@@ -62,4 +62,5 @@ let
 in
   { mtg-life = pkgs.haskell.packages.${compiler}.mtg-life;
     cabal = pkgs.haskell.packages.${compiler}.cabal-install;
+    pkgs = pkgs;
   }
